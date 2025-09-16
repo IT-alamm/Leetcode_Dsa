@@ -1,43 +1,34 @@
 class MyStack {
     private Queue<Integer> main;
     private Queue<Integer> helper;
-
     public MyStack() {
         main = new LinkedList<>();
-        helper = new LinkedList<>();
-        
+        helper = new LinkedList<>();  
     }
-    
     public void push(int x) {
+        // moving all elements to helper from main if(size>0)
         while(main.size()>0){
             helper.add(main.remove());
         }
-
+        // adding elements in main 
         main.add(x);
-
+        // moving all elements from helper to main
         while(helper.size()>0){
             main.add(helper.remove());
-        }
-        
+        } 
     }
-    
     public int pop() {
-        return main.remove();
-        
+        return main.remove(); 
     }
-    
     public int top() {
-        return main.peek();
-        
+      return main.peek();  
     }
-    
     public boolean empty() {
         if(main.size()==0){
             return true;
         }else{
             return false;
         }
-        
     }
 }
 
