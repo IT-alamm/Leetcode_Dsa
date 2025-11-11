@@ -1,8 +1,8 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int range = nums.length;
+        int n = nums.length;
 
-        int actualSum = (range*(range + 1))/2;
+        int actualSum = (n*(n + 1))/2;
 
         int currSum = 0;
 
