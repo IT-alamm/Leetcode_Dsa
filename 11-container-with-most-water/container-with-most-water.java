@@ -7,19 +7,15 @@ class Solution {
         while(start<end){
             int w = end-start;
             int h;
-
             if(height[start]<=height[end]){
                 h = height[start++];
             }else{
                 h = height[end--];
             }
-
             int area = w * h;
             if(area > maxArea)
                 maxArea = area;
         }
-
-        return maxArea;
-        
+        return maxArea;  
     }
 }
