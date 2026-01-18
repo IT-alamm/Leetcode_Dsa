@@ -1,26 +1,23 @@
 class Solution {
     public int trap(int[] height) {
-        int start = 0;
-        int end = height.length - 1;
-        int water = 0;
-        int startMax = height[0];
-        int endMax = height[end];
+        int n = height.length;
+        int[] lmax = new int[n];
+        int[] rmax = new int[n];
+        int trapWater = 0;
 
-        while (start < end) {
-            if (height[start] <= height[end]) {
-                if (height[start] > startMax)
-                    startMax = height[start];
-                else
-                    water = water + startMax - height[start];
-                start++;
-            } else {
-                if (height[end] > endMax)
-                    endMax = height[end];
-                else
-                    water = water + endMax - height[end];
-                    end--;
-            }
+        lmax[0] = height[0];
+        rmax[n-1] = height[n-1];
+
+        for(int i = 1; i<n; i++){
+            lmax[i] = Math.max(lmax[i-1],height[i]);
         }
-        return water;
+        for(int i = n-2; i>=0; i--){
+            rmax[i] = Math.max(rmax[i+1],height[i]);
+        }
+
+        for(int i = 0; i<n; i++){
+            trapWater += (Math.min(lmax[i], rmax[i])-height[i]);
+        }
+        return trapWater;
     }
 }
