@@ -4,27 +4,22 @@ class Solution {
         int end = nums.length - 1;
 
         while (start <= end) {
-            int mid = start + (end - start) / 2; 
-            if (nums[mid] == target) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target)
                 return mid;
-            }
-            // Left half is sorted
-            if (nums[start] <= nums[mid]) {
-                if (target >= nums[start] && target < nums[mid]) {
+            if (nums[start] <= nums[mid]) { // left half sorted
+                if (nums[start] <= target && target <= nums[mid])
                     end = mid - 1;
-                } else {
+                else
                     start = mid + 1;
-                }
-            } 
-            // Right half is sorted
-            else {
-                if (target > nums[mid] && target <= nums[end]) {
+            } else { // right half sorted
+                if (nums[mid] <= target && target <= nums[end])
                     start = mid + 1;
-                } else {
+                else
                     end = mid - 1;
-                }
             }
         }
+
         return -1;
     }
 }
